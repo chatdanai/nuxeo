@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2006-2018 Nuxeo SA (http://nuxeo.com/) and others.
+ * (C) Copyright 2006-2019 Nuxeo (http://nuxeo.com/) and others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@
  *     Nuxeo - initial API and implementation
  *     Thierry Delprat (td@nuxeo.com)
  *     Nuno Cunha (ncunha@nuxeo.com)
- *
- * $Id: JOOoConvertPluginImpl.java 18651 2007-05-13 20:28:53Z sfermigier $
  */
 
 package org.nuxeo.ecm.platform.dublincore.service;
@@ -88,7 +86,7 @@ public class DublinCoreStorageServiceImpl extends DefaultComponent implements Du
 
         String principalName = principal.getName();
         if (principal instanceof SystemPrincipal) {
-            principalName = ((SystemPrincipal) principal).getActingUser();
+            principalName = principal.getActingUser();
             if (SYSTEM_USERNAME.equals(principalName) && !ABOUT_TO_CREATE.equals(event.getName())) {
                 return;
             }
