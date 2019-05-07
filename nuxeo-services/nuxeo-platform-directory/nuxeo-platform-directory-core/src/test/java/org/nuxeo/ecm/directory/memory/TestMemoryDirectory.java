@@ -37,12 +37,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentModelList;
+import org.nuxeo.ecm.core.api.local.WithUser;
 import org.nuxeo.ecm.core.query.QueryParseException;
 import org.nuxeo.ecm.core.query.sql.model.OrderByExprs;
 import org.nuxeo.ecm.core.query.sql.model.Predicates;
@@ -53,14 +53,11 @@ import org.nuxeo.ecm.directory.DirectoryException;
 import org.nuxeo.ecm.directory.Session;
 import org.nuxeo.ecm.directory.api.DirectoryService;
 import org.nuxeo.ecm.platform.login.test.ClientLoginFeature;
-import org.nuxeo.ecm.platform.login.test.DummyNuxeoLoginModule;
 import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
 import org.nuxeo.runtime.test.runner.RuntimeFeature;
-
-import com.google.inject.Inject;
 
 /**
  * @author Florent Guillaume
@@ -71,6 +68,7 @@ import com.google.inject.Inject;
 @Deploy("org.nuxeo.ecm.core.cache")
 @Deploy("org.nuxeo.ecm.directory")
 @Deploy("org.nuxeo.ecm.directory.core.tests:test-schema.xml")
+@WithUser("Administrator")
 public class TestMemoryDirectory {
 
     protected MemoryDirectory memDir;
@@ -79,15 +77,10 @@ public class TestMemoryDirectory {
 
     protected DocumentModel entry;
 
-    @Inject
-    protected ClientLoginFeature loginFeature;
-
     static final String SCHEMA_NAME = "myschema";
 
     @Before
-    public void before() throws Exception {
-
-        loginFeature.login(DummyNuxeoLoginModule.ADMINISTRATOR_USERNAME);
+    public void before() {
 
         MemoryDirectoryDescriptor descr = new MemoryDirectoryDescriptor();
         descr.name = "mydir";
@@ -105,11 +98,6 @@ public class TestMemoryDirectory {
         e1.put("int", 3);
         e1.put("x", "XYZ"); // shouldn't be put in storage
         entry = dir.createEntry(e1);
-    }
-
-    @After
-    public void after() throws Exception {
-        loginFeature.logout();
     }
 
     @Test
