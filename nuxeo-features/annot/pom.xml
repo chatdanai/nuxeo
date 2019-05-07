@@ -14,7 +14,6 @@
     <module>nuxeo-annot-api</module>
     <module>nuxeo-annot-core</module>
     <module>nuxeo-annot-contrib</module>
-    <module>nuxeo-annot-http</module>
     <module>nuxeo-annot-repo</module>
   </modules>
 
