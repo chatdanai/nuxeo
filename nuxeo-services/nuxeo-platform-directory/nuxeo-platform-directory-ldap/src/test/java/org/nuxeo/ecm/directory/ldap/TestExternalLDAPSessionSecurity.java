@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2014 Nuxeo SA (http://nuxeo.com/) and others.
+ * (C) Copyright 2014-2019 Nuxeo (http://nuxeo.com/) and others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -72,7 +73,6 @@ public class TestExternalLDAPSessionSecurity {
 
     @Inject
     ExternalLDAPDirectoryFeature ldapFeature;
-
 
     @Before
     public void setUp() {
@@ -182,8 +182,8 @@ public class TestExternalLDAPSessionSecurity {
         assertEquals("cn=members,ou=editable,ou=groups,dc=example,dc=com",
                 entry.getProperty(ExternalLDAPDirectoryFeature.GROUP_SCHEMANAME, "dn"));
 
-        assertEquals(Arrays.asList("submembers"),
-                entry.getProperty(ExternalLDAPDirectoryFeature.GROUP_SCHEMANAME, "subGroups"));
+        assertEquals(List.of("submembers"),
+                     entry.getProperty(ExternalLDAPDirectoryFeature.GROUP_SCHEMANAME, "subGroups"));
 
         // edit description and members but not subGroups
         entry.setProperty(ExternalLDAPDirectoryFeature.GROUP_SCHEMANAME, "description", "AWonderfulGroup");
