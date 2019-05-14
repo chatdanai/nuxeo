@@ -21,6 +21,7 @@ package org.nuxeo.ecm.core.api.impl;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.NuxeoPrincipal;
@@ -60,8 +61,7 @@ public class UserPrincipal implements NuxeoPrincipal, Serializable {
 
     public UserPrincipal(String username, List<String> groups, boolean anonymous, boolean administrator) {
         userName = username;
-        List<String> emptyGroups = Collections.emptyList();
-        this.groups = groups == null ? emptyGroups : groups;
+        this.groups = Objects.requireNonNullElseGet(groups, Collections::emptyList);
         this.anonymous = anonymous;
         this.administrator = administrator;
     }
@@ -173,7 +173,7 @@ public class UserPrincipal implements NuxeoPrincipal, Serializable {
 
     @Override
     public boolean isMemberOf(String group) {
-        return false;
+        return groups.contains(group);
     }
 
     @Override

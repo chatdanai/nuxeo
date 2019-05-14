@@ -37,31 +37,23 @@ import org.nuxeo.ecm.core.test.CoreFeature;
 import org.nuxeo.ecm.core.test.annotations.Granularity;
 import org.nuxeo.ecm.core.test.annotations.RepositoryConfig;
 import org.nuxeo.ecm.platform.groups.audit.service.ExcelExportService;
+import org.nuxeo.ecm.platform.test.UserManagerFeature;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
 import org.nuxeo.runtime.api.Framework;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
-import org.nuxeo.runtime.test.runner.LocalDeploy;
 
 /**
  * Test excel export of groups
  */
 @RunWith(FeaturesRunner.class)
-@Features({CoreFeature.class, DirectoryFeature.class})
+@Features({CoreFeature.class, DirectoryFeature.class, UserManagerFeature.class})
 @RepositoryConfig(cleanup = Granularity.METHOD)
-@Deploy({ "org.nuxeo.ecm.core",
-        "org.nuxeo.ecm.core.api",
-        "org.nuxeo.runtime.management",
-        "org.nuxeo.ecm.directory.sql",
-        "org.nuxeo.ecm.permissions",
-        "org.nuxeo.ecm.platform.usermanager",
-        "org.nuxeo.ecm.platform.usermanager.api",
-        "nuxeo-groups-rights-audit",
-        "org.nuxeo.ecm.automation.core" })
-@LocalDeploy({ "org.nuxeo.ecm.platform.groups.audit.tests:OSGI-INF/directory-config.xml",
-        "org.nuxeo.ecm.platform.groups.audit.tests:OSGI-INF/schemas-config.xml",
-        "org.nuxeo.ecm.platform.groups.audit.tests:OSGI-INF/test-chain-export-operation.xml" })
+@Deploy("org.nuxeo.ecm.permissions")
+@Deploy("nuxeo-groups-rights-audit")
+@Deploy("org.nuxeo.ecm.automation.core")
+@Deploy("org.nuxeo.ecm.platform.groups.audit.tests:OSGI-INF/test-chain-export-operation.xml")
 public class TestExcelExportGroups {
 
     @Inject

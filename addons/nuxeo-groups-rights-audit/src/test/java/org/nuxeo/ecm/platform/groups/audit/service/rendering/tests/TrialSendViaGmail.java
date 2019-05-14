@@ -36,16 +36,16 @@ import org.nuxeo.ecm.platform.groups.audit.service.acl.job.publish.PublishByMail
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
-import org.nuxeo.runtime.test.runner.LocalDeploy;
 
 @RunWith(FeaturesRunner.class)
 @Features(AutomationFeature.class)
-@Deploy({ "org.nuxeo.ecm.platform.query.api", "nuxeo-groups-rights-audit",
+@Deploy("nuxeo-groups-rights-audit")
 /* following bundles are required to be able to send an email with attachement */
-"org.nuxeo.ecm.platform.url.api", "org.nuxeo.ecm.platform.url.core", "org.nuxeo.ecm.platform.notification.core",
-        "org.nuxeo.ecm.platform.notification.api", "org.nuxeo.ecm.platform.placeful.api" })
-@LocalDeploy({ "nuxeo-groups-rights-audit:OSGI-INF/directory-config.xml",
-        "nuxeo-groups-rights-audit:OSGI-INF/schemas-config.xml" })
+@Deploy("org.nuxeo.ecm.platform.url.api")
+@Deploy("org.nuxeo.ecm.platform.url.core")
+@Deploy("org.nuxeo.ecm.platform.notification.core")
+@Deploy("org.nuxeo.ecm.platform.notification.api")
+@Deploy("org.nuxeo.ecm.platform.placeful.api")
 @Ignore
 // wrong content and no smtp mock, not an unit test at all
 public class TrialSendViaGmail {

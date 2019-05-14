@@ -40,7 +40,6 @@ import org.nuxeo.ecm.platform.usermanager.UserManager;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
-import org.nuxeo.runtime.test.runner.LocalDeploy;
 
 /**
  * Test excel export of groups
@@ -48,9 +47,7 @@ import org.nuxeo.runtime.test.runner.LocalDeploy;
 @RunWith(FeaturesRunner.class)
 @Features(PlatformFeature.class)
 @RepositoryConfig(cleanup = Granularity.METHOD)
-@Deploy({ "org.nuxeo.ecm.platform.query.api", "nuxeo-groups-rights-audit" })
-@LocalDeploy({ "nuxeo-groups-rights-audit:OSGI-INF/directory-config.xml",
-        "nuxeo-groups-rights-audit:OSGI-INF/schemas-config.xml" })
+@Deploy("nuxeo-groups-rights-audit")
 public class TrialAclLayoutGeneratedOneColumnPerAcl extends AbstractAclLayoutTest {
     @Inject
     CoreSession session;
@@ -60,8 +57,8 @@ public class TrialAclLayoutGeneratedOneColumnPerAcl extends AbstractAclLayoutTes
 
     private final static Log log = LogFactory.getLog(TrialAclLayoutGeneratedOneColumnPerAcl.class);
 
-    protected static File testFile = new File(folder + TrialAclLayoutGeneratedOneColumnPerAcl.class.getSimpleName()
-            + ".xls");
+    protected static File testFile = new File(
+            folder + TrialAclLayoutGeneratedOneColumnPerAcl.class.getSimpleName() + ".xls");
 
     @Test
     public void testExcelExportReport() throws Exception {

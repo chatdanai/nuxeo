@@ -39,24 +39,20 @@ import org.nuxeo.ecm.core.test.annotations.RepositoryConfig;
 import org.nuxeo.ecm.platform.groups.audit.service.acl.filter.AcceptsAllContent;
 import org.nuxeo.ecm.platform.groups.audit.service.acl.filter.AcceptsGroupOnly;
 import org.nuxeo.ecm.platform.groups.audit.service.acl.filter.IContentFilter;
+import org.nuxeo.ecm.platform.test.NuxeoLoginFeature;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
-import org.nuxeo.runtime.test.runner.LocalDeploy;
 
 /**
  * Test excel export of groups
  */
 @RunWith(FeaturesRunner.class)
-@Features({CoreFeature.class, DirectoryFeature.class})
+@Features({ CoreFeature.class, DirectoryFeature.class, NuxeoLoginFeature.class })
 @RepositoryConfig(cleanup = Granularity.METHOD)
-@Deploy({ "org.nuxeo.ecm.core", "org.nuxeo.ecm.core.api", "org.nuxeo.runtime.management",
-        "org.nuxeo.ecm.directory.sql", "org.nuxeo.ecm.platform.usermanager",
-        "org.nuxeo.ecm.platform.usermanager.api", "nuxeo-groups-rights-audit",
-        "org.nuxeo.ecm.automation.core" })
-@LocalDeploy({ "org.nuxeo.ecm.platform.groups.audit.tests:OSGI-INF/directory-config.xml",
-        "org.nuxeo.ecm.platform.groups.audit.tests:OSGI-INF/schemas-config.xml" })
+@Deploy("nuxeo-groups-rights-audit")
+@Deploy("org.nuxeo.ecm.automation.core")
 public class TestContentFilter extends AbstractAclLayoutTest {
 
     @Inject

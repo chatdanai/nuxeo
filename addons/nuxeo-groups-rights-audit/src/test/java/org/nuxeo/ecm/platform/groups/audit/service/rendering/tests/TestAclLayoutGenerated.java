@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2006-2013 Nuxeo SA (http://nuxeo.com/) and others.
+ * (C) Copyright 2006-2019 Nuxeo (http://nuxeo.com/) and others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,6 @@ import org.nuxeo.ecm.platform.usermanager.UserManager;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
-import org.nuxeo.runtime.test.runner.LocalDeploy;
 
 /**
  * Test excel export of groups
@@ -48,9 +47,7 @@ import org.nuxeo.runtime.test.runner.LocalDeploy;
 @RunWith(FeaturesRunner.class)
 @Features(PlatformFeature.class)
 @RepositoryConfig(cleanup = Granularity.METHOD)
-@Deploy({ "org.nuxeo.ecm.platform.query.api", "nuxeo-groups-rights-audit", "org.nuxeo.ecm.platform.web.common" })
-@LocalDeploy({ "nuxeo-groups-rights-audit:OSGI-INF/directory-config.xml",
-        "nuxeo-groups-rights-audit:OSGI-INF/schemas-config.xml" })
+@Deploy("nuxeo-groups-rights-audit")
 public class TestAclLayoutGenerated extends AbstractAclLayoutTest {
     @Inject
     CoreSession session;

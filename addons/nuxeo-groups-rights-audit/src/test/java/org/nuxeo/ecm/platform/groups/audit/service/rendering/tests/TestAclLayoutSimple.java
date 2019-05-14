@@ -19,6 +19,8 @@
 
 package org.nuxeo.ecm.platform.groups.audit.service.rendering.tests;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
@@ -40,9 +42,6 @@ import org.nuxeo.ecm.platform.usermanager.UserManager;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
-import org.nuxeo.runtime.test.runner.LocalDeploy;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Test excel export of groups
@@ -50,9 +49,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(FeaturesRunner.class)
 @Features(PlatformFeature.class)
 @RepositoryConfig(cleanup = Granularity.METHOD)
-@Deploy({ "org.nuxeo.ecm.platform.query.api", "nuxeo-groups-rights-audit", "org.nuxeo.ecm.platform.web.common" })
-@LocalDeploy({ "nuxeo-groups-rights-audit:OSGI-INF/directory-config.xml",
-        "nuxeo-groups-rights-audit:OSGI-INF/schemas-config.xml" })
+@Deploy("nuxeo-groups-rights-audit")
 public class TestAclLayoutSimple extends AbstractAclLayoutTest {
     @Inject
     CoreSession session;

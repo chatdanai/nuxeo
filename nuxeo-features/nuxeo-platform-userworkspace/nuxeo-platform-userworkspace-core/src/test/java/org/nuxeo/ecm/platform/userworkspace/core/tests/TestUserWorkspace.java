@@ -67,7 +67,6 @@ import org.nuxeo.runtime.test.runner.FeaturesRunner;
 @Deploy("org.nuxeo.ecm.platform.userworkspace.types")
 @Deploy("org.nuxeo.ecm.platform.userworkspace.core")
 @Deploy("org.nuxeo.ecm.platform.collections.core")
-@Deploy("org.nuxeo.ecm.platform.web.common")
 public class TestUserWorkspace {
 
     @Inject

@@ -29,7 +29,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.naming.directory.DirContext;
-import javax.security.auth.login.LoginException;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -42,7 +41,6 @@ import org.nuxeo.ecm.core.api.DocumentModelList;
 import org.nuxeo.ecm.core.api.local.WithUser;
 import org.nuxeo.ecm.directory.Session;
 import org.nuxeo.ecm.directory.api.DirectoryService;
-import org.nuxeo.ecm.platform.login.test.ClientLoginFeature;
 import org.nuxeo.runtime.test.runner.Deploy;
 import org.nuxeo.runtime.test.runner.Features;
 import org.nuxeo.runtime.test.runner.FeaturesRunner;
