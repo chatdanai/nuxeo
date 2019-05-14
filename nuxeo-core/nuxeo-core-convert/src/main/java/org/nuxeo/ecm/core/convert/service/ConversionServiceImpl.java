@@ -330,7 +330,7 @@ public class ConversionServiceImpl extends DefaultComponent implements Conversio
 
         if (result == null) {
             Converter converter = desc.getConverterInstance();
-            result = converter.convert(blobHolder, parameters);
+            result = converter.convert(blobHolder, parameters, desc.getDestinationMimeType());
 
             if (config.isCacheEnabled()) {
                 ConversionCacheHolder.addToCache(cacheKey, result);

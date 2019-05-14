@@ -67,6 +67,18 @@ public class LibreOfficeConverter extends CommandLineConverter {
         return cmdStringParameters;
     }
 
+    /**
+     * @since 11.1 If the blob is already in the format of the output, just return it without processing it.
+     */
+    @Override
+    public BlobHolder convert(BlobHolder blobHolder, Map<String, Serializable> parameters, String destinationMimeType)
+            throws ConversionException {
+        if (blobHolder.getBlob().getMimeType().equals(destinationMimeType)) {
+            return blobHolder;
+        }
+        return convert(blobHolder, parameters);
+    }
+
     @Override
     protected BlobHolder buildResult(List<String> cmdOutput, CmdParameters cmdParams) {
         try {

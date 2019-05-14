@@ -129,6 +129,7 @@
                class="org.nuxeo.ecm.platform.convert.plugins.LibreOfficeConverter">
       <destinationMimeType>application/pdf</destinationMimeType>
 
+      <sourceMimeType>application/pdf</sourceMimeType>
       <sourceMimeType>text/xml</sourceMimeType>
       <sourceMimeType>text/html</sourceMimeType>
       <sourceMimeType>text/plain</sourceMimeType>

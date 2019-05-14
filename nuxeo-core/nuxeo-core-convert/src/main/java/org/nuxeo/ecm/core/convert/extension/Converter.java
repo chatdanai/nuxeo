@@ -50,4 +50,16 @@ public interface Converter {
      */
     BlobHolder convert(BlobHolder blobHolder, Map<String, Serializable> parameters) throws ConversionException;
 
+    /**
+     * @since 11.1
+     * To override with converter specific logic only if needed.
+     *
+     * {@inheritDoc Converter#convert(BlobHolder, Map)}
+     * @param destinationMimeType to compare with inputMimeType
+     * @return a BlobHolder specific to the converter override or the result of {@link CommandLineBasedConverter#convert(BlobHolder, Map)}
+     */
+    default BlobHolder convert(BlobHolder blobHolder, Map<String, Serializable> parameters, String destinationMimeType)
+            throws ConversionException {
+        return convert(blobHolder, parameters);
+    }
 }
